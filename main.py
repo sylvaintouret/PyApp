@@ -30,7 +30,6 @@ class App:
 	def index(self):
 		#This is the reference to the tempalte file
 		htmlFile = os.path.join(root,'data\\templates\\home.tmpl')
-		cssFile = os.path.join(root,'data\\css\\styles.css')
 		
 		# read the template
 		t = Template(file = htmlFile)
@@ -40,8 +39,7 @@ class App:
 		t.nav_menu = nav_menu
 		t.nav_activeitem = 'index'
 		t.contents = "DemoContent"
-		with open(cssFile, 'r') as myfile:
-			t.css = myfile.read()
+
 		
 		# manage menu active button
 		return str(t)
@@ -50,7 +48,6 @@ class App:
 	def about(self):
 		#This is the reference to the tempalte file
 		htmlFile = os.path.join(root,'data\\templates\\about.tmpl')
-		cssFile = os.path.join(root,'data\\css\\styles.css')
 
 		# read the template
 		t = Template(file = htmlFile)
@@ -66,8 +63,6 @@ class App:
 			<p>Author : Sylvain Touret</p>
 			<p>AVL France 2017</p>
 		"""
-		with open(cssFile, 'r') as myfile:
-			t.css = myfile.read()
 	
 		return str(t)
 		
@@ -75,7 +70,6 @@ class App:
 	def page1(self):
 		#This is the reference to the tempalte file
 		htmlFile = os.path.join(root,'data\\templates\\page1.tmpl')
-		cssFile = os.path.join(root,'data\\css\\styles.css')
 
 		# read the template
 		t = Template(file = htmlFile)
@@ -94,18 +88,13 @@ class App:
 		cur.execute(select)
 		
 		t.db = cur
-		
-		with open(cssFile, 'r') as myfile:
-			t.css = myfile.read()
-		
 	
 		return str(t)
 	
 	@cherrypy.expose()
 	def page2(self):
-		#This is the reference to the tempalte file
+		#This is the reference to the template file
 		htmlFile = os.path.join(root,'data\\templates\\page2.tmpl')
-		cssFile = os.path.join(root,'data\\css\\styles.css')
 		
 		# read the template
 		t = Template(file = htmlFile)
@@ -115,9 +104,6 @@ class App:
 		t.nav_menu = nav_menu
 		t.nav_activeitem = 'page2'
 		t.contents = "This is my page2 "
-		
-		with open(cssFile, 'r') as myfile:
-			t.css = myfile.read()
 	
 		return str(t)
 
@@ -125,18 +111,12 @@ class App:
 # run cherrypy
 
 # Configuration for server
-config = {
-  'global' : {
-		'server.socket_host' : '127.0.0.1',
-		'server.socket_port' : 8080,
-		'server.thread_pool' : 10
-	}
-}
+configFile = os.path.join(root,'server.conf')
 
 if __name__ == '__main__':
 
-	# starts the web server with the settings in config file
-	cherrypy.quickstart(App() , '/' , config)
+	# starts the web server with the settings in configuration file
+	cherrypy.quickstart(App() , config = configFile)
 
 
 
