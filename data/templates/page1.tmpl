@@ -1,0 +1,53 @@
+#from Cheetah.Template import Template
+#extends Template
+#import sqlite3
+
+<html>
+	<head>
+		<title>$title</title>
+		<style>
+			$css
+		</style>
+	</head>
+	<body>
+		<div id="navigation">
+			<ul class="horizontal gray">
+			#for $nav_item in $nav_menu
+				#if $nav_activeitem == $nav_item['cpyref']
+					<li><a href="$nav_item['cpyref']" class="active">$nav_item['name']</a></li>
+				#else
+					<li><a href="$nav_item['cpyref']" class="inactive">$nav_item['name']</a></li>
+				#end if
+			#end for
+			</ul>
+		</div>
+	
+	##here we will publish a table with all the database columns
+		<div id="content">
+			## table css
+			<table id="databaseviewer">
+			
+			## create header line (in bold)
+			<tr>
+			#for $desc in $db.description
+				<th>$desc[0]</th>
+			#end for
+			</tr>
+			
+			## populates the entire table with query results
+			#set $rows = $db.fetchall()
+			#for $row in $rows
+				<tr>
+				#for $x in $row
+					<td align="right" style="padding:1px 4px"> $x </td>
+				#end for
+				</tr>
+			#end for
+
+			</table>
+		</div>
+	</body>
+</html>
+
+
+
