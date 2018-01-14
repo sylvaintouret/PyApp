@@ -11,6 +11,9 @@ import cherrypy
 from Cheetah.Template import Template
 import sqlite3
 
+import random
+import string
+
 # Root path
 root = os.path.abspath(os.path.dirname(__file__))
 
@@ -29,7 +32,7 @@ class App:
 	@cherrypy.expose()
 	def index(self):
 		#This is the reference to the tempalte file
-		htmlFile = os.path.join(root,'data\\templates\\home.tmpl')
+		htmlFile = os.path.join(root,'data\\templates\\home.mako')
 		
 		# read the template
 		t = Template(file = htmlFile)
@@ -47,7 +50,7 @@ class App:
 	@cherrypy.expose()
 	def about(self):
 		#This is the reference to the tempalte file
-		htmlFile = os.path.join(root,'data\\templates\\about.tmpl')
+		htmlFile = os.path.join(root,'data\\templates\\about.mako')
 
 		# read the template
 		t = Template(file = htmlFile)
@@ -69,7 +72,7 @@ class App:
 	@cherrypy.expose()
 	def page1(self):
 		#This is the reference to the tempalte file
-		htmlFile = os.path.join(root,'data\\templates\\page1.tmpl')
+		htmlFile = os.path.join(root,'data\\templates\\page1.mako')
 
 		# read the template
 		t = Template(file = htmlFile)
@@ -78,7 +81,6 @@ class App:
 		t.title = "PAGE1"
 		t.nav_menu = nav_menu
 		t.nav_activeitem = 'page1'
-		t.contents = "This is my page1 "
 		
 		# read database here and send it to cheetah
 		db = sqlite3.connect(dbFile)
@@ -94,7 +96,7 @@ class App:
 	@cherrypy.expose()
 	def page2(self):
 		#This is the reference to the template file
-		htmlFile = os.path.join(root,'data\\templates\\page2.tmpl')
+		htmlFile = os.path.join(root,'data\\templates\\page2.mako')
 		
 		# read the template
 		t = Template(file = htmlFile)
@@ -103,10 +105,11 @@ class App:
 		t.title = "PAGE2"
 		t.nav_menu = nav_menu
 		t.nav_activeitem = 'page2'
-		t.contents = "This is my page2 "
+		t.contents = "This is my page2"
 	
 		return str(t)
-
+	
+	
 
 
 # run cherrypy
@@ -115,7 +118,6 @@ class App:
 configFile = os.path.join(root,'server.conf')
 
 if __name__ == '__main__':
-
 	# starts the web server with the settings in configuration file
 	cherrypy.quickstart(App() , config = configFile)
 

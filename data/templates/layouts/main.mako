@@ -1,12 +1,13 @@
-#from Cheetah.Template import Template
-#extends Template
 
-<html>
-	<head>
+<!DOCTYPE html>
+<html lang="eng">
+    <head>
+        <meta charset="utf-8">
 		<title>$title</title>
 		<link rel="stylesheet" type="text/css" href="/css/navigation.css">
-		
+		$cssBlock()
 	</head>
+	
 	<body>
 		<div id="navigation">
 			<ul class="horizontal gray">
@@ -19,12 +20,14 @@
 			#end for
 			</ul>
 		</div>
+		
 
-		<p>
-		$contents
-		</p>
+		$contentBlock()
+		
+		<script>
+			$scriptBlock()
+		</script>
 	</body>
+
 </html>
-
-
 
