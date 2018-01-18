@@ -40,7 +40,7 @@
 
 #def scriptBlock
 	function filterPerTB() {
-	  var input, filter, table, tr, td, i, tds,found;
+	  var input, filters, table, tr, td, i, tds,filter,show;
 	  input = document.getElementById("myInput");
 	  filter = input.value.toUpperCase();
 	  table = document.getElementById("databaseviewer");
@@ -55,11 +55,18 @@
 		}
 		
 		if (td && tds.length>0) {
-			  if (td.toUpperCase().indexOf(filter) > -1) {
+			filters = filter.split(" "); // get all filter requested
+			show = true;
+			for (j=0;j<filters.length;j++){
+				show = show && (td.toUpperCase().indexOf(filters[j]) > -1)
+			}
+			
+			// Make the decision to show or not
+			if (show) {
 				tr[i].style.display = "";
-			  } else {
+			} else {
 				tr[i].style.display = "none";
-			  }
+			}
 		}
 	  }
 	}

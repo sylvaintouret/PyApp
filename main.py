@@ -38,7 +38,7 @@ class App:
 		t = Template(file = htmlFile)
 		
 		# fill with the information required
-		t.title = "DemoTitle"
+		t.title = "PyApp"
 		t.nav_menu = nav_menu
 		t.nav_activeitem = 'index'
 		t.contents = "DemoContent"
@@ -56,7 +56,7 @@ class App:
 		t = Template(file = htmlFile)
 		
 		# fill with the information required
-		t.title = "ABOUT"
+		t.title = "PyApp"
 		t.nav_menu = nav_menu
 		t.nav_activeitem = 'about'
 		t.contents = """
@@ -78,7 +78,7 @@ class App:
 		t = Template(file = htmlFile)
 		
 		# fill with the information required
-		t.title = "PAGE1"
+		t.title = "PyApp"
 		t.nav_menu = nav_menu
 		t.nav_activeitem = 'page1'
 		
@@ -102,7 +102,7 @@ class App:
 		t = Template(file = htmlFile)
 		
 		# fill with the information required
-		t.title = "PAGE2"
+		t.title = "PyApp"
 		t.nav_menu = nav_menu
 		t.nav_activeitem = 'page2'
 		t.contents = "This is my page2"
