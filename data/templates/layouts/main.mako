@@ -5,6 +5,7 @@
         <meta charset="utf-8">
 		<title>$title</title>
 		<link rel="stylesheet" type="text/css" href="/css/navigation.css">
+		<link rel="stylesheet" href="css/theme.css"><!-- Theme used for page -->
 		$cssBlock()
 	</head>
 	
